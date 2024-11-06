@@ -1,10 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Dom 조작</title>
+
+    <script>
+        let score =0;
+        function load()
+        {
+            let div1=document.getElementById("id_div");
+            console.log(div1);
+
+            document.addEventListener("keydown",(event)=>{if
+            (event.key==="ArrowLeft")
+            {
+                console.log("왼쪽")
+            }
+            else if(event.key==="ArrowRight")
+            {
+                console.log("오른쪽")
+            }
+            else if(event.key==="ArrowUp")
+            {
+                console.log("위쪽")
+            }
+            else if(event.key==="ArrowDown")
+            {
+                console.log("아래쪽")
+            }
+            });
+
+        }
+        document.write("<b>hello</b><br>");
+        document.write("<b>World</b>");
+        function exam()
+        {
+            let div1 =document.getElementById("id_div");
+            let divList=document.getElementsByClassName("class_div");
+            let div3=document.getElementsByName("div");
+        }
+        function ChangeTextColor()
+        {
+            const div = document.getElementById("id_div");
+            div.style.color="red"
+        }
+        function ChangeTextColor1()
+        {
+            const div = document.getElementById("id_div")
+            div.className="style1"
+        }
+        function ChangeTextColor2()
+        {
+            const div = document.getElementById("id_div");
+            div.className="style2"
+        }
+        function inputTag()
+        {
+            const div = document.getElementById("background");
+            div.innerHTML="hello"
+        }
+    </script>
+    <style>
+      div
+      {
+
+      }
+      #id_div
+      {
+
+      }
+      .class_div
+      {
+
+      }
+      .style1
+      {
+          background-color: aqua;
+      }
+      .style2
+      {
+          background-color: green;
+      }
+
+      #mouse
+      {
+          width: 200px;
+          height: 200px;
+          border: 1px ghostwhite;
+      }
+      </style>
 </head>
 <body>
-$END$
+<button onclick="ChangeTextColor()">
+    색상 변경
+</button>
+<button class="style1" onclick="ChangeTextColor1">
+    style1
+</button>
+<button class="style2" onclick="ChangeTextColor2">
+    style2
+</button>
+
+<div>div</div>
+<div id="id_div">
+    id_div
+</div>
+<div class="class_div">
+    class_div
+</div>
+<div id="background" onclick="inputTag()">
+    BackGround
+</div>
+
+<label for="type">
+    성별:
+    <select id="type">
+        <option value="man">
+            남
+        </option>
+        <option value="woman">
+            여
+        </option>
+    </select>
+</label>
+
+<script>
+    function typeChanged()
+    {
+        const type=document.getElementById("type");
+        console.log(type.value);
+    }
+</script>
+<div id="mouse" onmouseover="mouseover(this)"></div>
+<div id="out" onmouseout="mouseout(this)"></div>
+
+
+<script>
+    function mouseover(target)
+    {
+        target.style.backgroundColor="red";
+    }
+    function mouseout(target)
+    {
+        target.style.backgroundColor="";
+    }
+
+</script>
 </body>
 </html>

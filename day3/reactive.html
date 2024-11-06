@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Media quary</title>
+  <style>
+      #div1
+    {
+      background-color: blueviolet;
+    }
+    @media (max-width: 1280px)
+    {
+      #div1
+      {
+        background-color: aqua;
+      }
+    }
+    @media (max-width: 600px)
+    {
+      #div1
+      {
+        background-color: red;
+      }
+    }
+
+  </style>
 </head>
 <body>
-$END$
+  <div id="div1">Div</div>
 </body>
 </html>
