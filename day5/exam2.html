@@ -2,9 +2,83 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>Title</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous">
+  </script>
+  <script>
+    function exam()
+    {
+      const str = prompt("fasdfs");
+      if(str === null)
+      {
+        alert("텍스트값을 입력해 주세요");
+      }
+      else
+      {
+        const textDiv = document.getElementsByClassName("div");
+        textDiv.innerHTML =div;
+      }
+
+    }
+    function ChangeTextColor(red)
+    {
+      const div= document.getElementsByClassName("div");
+      div.style.color="red"
+      alert("빨간색으로 변경됩니다.")
+    }
+    function ChangeTextColor1(blue)
+    {
+      const div= document.getElementsByClassName("div");
+      div.style.color="blue"
+      alert("파란색으로 변경됩니다.")
+    }
+    function ChangeTextColor2(green)
+    {
+      const div= document.getElementsByClassName("div");
+      div.style.color="green"
+      alert("초록색으로 변경됩니다.")
+    }
+$("#text").html(text);
+    $("#result").attr("class","center");
+  </script>
+  <style>
+    .div
+    {
+      text-align: center;
+    }
+    .div2
+    {
+      text-align: center;
+    }
+    .red
+    {
+
+      border: 1px;
+      color: red;
+    }
+    .blue
+    {
+
+      border: 1px;
+      color: blue;
+    }
+    .green
+    {
+
+      border: 1px;
+      color: green;
+    }
+
+  </style>
 </head>
 <body>
-$END$
+<button onclick="exam()">입력하기</button>
+<div class="div">!!!</div>
+<div class ="div2">
+  <button class="red" onclick="ChangeTextColor">빨강</button>
+  <button class ="blue" onclick="ChangeTextColor1">파랑</button>
+  <button class= "green" onclick="ChangeTextColor2">초록</button>
+</div>
+
 </body>
 </html>

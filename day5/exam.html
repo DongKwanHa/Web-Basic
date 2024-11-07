@@ -2,9 +2,71 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>Title</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous">
+  </script>
+  <script>
+    function insert()
+    {
+      const text = $("#enroll").val();
+      if(text.trim())
+      {
+        $("#main").append(`<div class="detail">${text}</div>`);
+        $("#enroll").val("");
+      }
+
+    }
+  </script>
 </head>
+<style>
+  .card
+  {
+    width: 350px;
+    font-size: 30px;
+  }
+  #title
+  {
+    background-color: dodgerblue;
+    color:white;
+    padding: 10px;
+  }
+  #main
+  {
+
+    background-color: lightgray;
+    padding: 16px;
+  }
+  .detail
+  {
+    margin: 16px 24px;
+    background-color: white;
+    padding: 8px;
+  }
+
+</style>
 <body>
-$END$
+<div class="card">
+  <div id="title">
+   기사등록하기
+  </div>
+  <div id="main">
+    페이스북 색감따라하기
+    <br>
+    <div class="detail">
+      <b>박지성</b> SBS에서 월드컵보세요!
+    </div>
+    <div class="detail">
+      <b>안정환</b> MBC죠...
+    </div>
+    <div class="detail">
+      <b>이영표</b> KBS는 수신료의 가치를...
+    </div>
+  </div>
+  <label>
+    <input type="text" id="enroll">
+  </label>
+
+  <button onclick="insert()">등록하기</button>
+</div>
 </body>
 </html>
