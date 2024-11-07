@@ -1,10 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script>
+const bgWidth =500;
+const bgHeight =500;
+const PlayerWidth=50;
+const PlayerHeight=50;
+
+function initGame()
+{
+  setTimeout(()=> {$("#Player").css("visibility","visible");},3000);
+}
+
+
+//키보드 이벤트
+function moveLeft()
+{
+  $("#Player").css("left","-=50px")
+}
+function moveRight()
+{
+  $("#Player").css("left","+=50px")
+}
+function moveUp()
+{
+  $("#Player").css("top","-=50px")
+}
+function moveDown()
+{
+  $("#Player").css("top","+=50px")
+}
+function CheckBounds()
+{
+  const Player = $("#Player");
+  const PlayerLeft = parseInt(Player.css("left"));//0px->0
+  const PlayerTop = parseInt(Player.css("top"));//0px->0
+
+  if(PlayerLeft<0)
+  {
+    Player.css("left","0px");
+  }
+  else if(PlayerLeft+PlayerWidth>bgWidth)
+  {
+    Player.css("left","450px");
+  }
+  else if(PlayerTop<0)
+  {
+    Player.css("Top","0px");
+  }
+  else if(PlayerTop+PlayerHeight>bgHeight)
+  {
+    Player.css("Top","450px");
+  }
+}
+    document.addEventListener("keydown",(event)=>
+      {
+        if (event.key==="ArrowLeft")
+        {
+          console.log("왼쪽")
+          moveLeft()
+        }
+          else if(event.key==="ArrowRight")
+          {
+            console.log("오른쪽")
+            moveRight()
+          }
+            else if(event.key==="ArrowUp")
+            {
+              console.log("위쪽")
+              moveUp()
+            }
+              else if(event.key==="ArrowDown")
+              {
+                console.log("아래쪽")
+                moveDown()
+              }
+              CheckBounds();
+      }
+    );
+      //OnLoad
+          $(()=>
+            {
+              initGame();
+            });
+  </script>
+<style>
+  #background
+  {
+    background-image: url("asset/thumb-1920-1069903.jpg");
+    background-size:cover;
+    position: absolute;
+    align-content: center;
+    width: 500px;
+    height: 500px;
+    border: 1px solid black;
+  }
+  #Player
+  {
+    /*background-image: url("asset/chalice_idle_0001.png");*/
+    /*background-size:cover;*/
+    visibility:visible;
+    position: absolute;
+    left: 50px;
+    width: 50px;
+    height: 50px;
+
+  }
+</style>
 </head>
 <body>
-$END$
+<div id="background">
+<!--  <img src="asset/thumb-1920-1069903.jpg">-->
+  <div id="Player">
+    <img src="asset/chalice_idle_0001.png" width="144" height="158">
+  </div>
+</div>
 </body>
 </html>

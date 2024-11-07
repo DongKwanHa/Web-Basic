@@ -1,10 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+  document.addEventListener("keydown",(event)=>
+          {
+            if (event.key===" ")
+            {
+              console.log("점프")
+              jump();
+            }
+
+          }
+  );
+</script>
+<script>
+  const playerWidth = 50;
+  const playerHeight = 50;
+
+  let enemyRight = 10;
+ let enemyspeed = 100;
+  let isJumping = false;
+  let isSpawning = false;
+
+  let isDie =false;
+
+  function jump()
+  {
+    if(isjumping===true)
+    {
+      return;
+    }
+    isjumping=true;
+    $("#player").animate(
+            {
+              bottom:"+=80px"
+            }).animate(
+                    {
+                      bottom:"-=80px"
+                    },()=>
+                      {
+                        isjumping=false;
+                      });
+  }
+</script>
+  <script>
+
+    function moveEnemy()
+    {
+
+        $("#enermy").css("right",'$("#enermy');
+      CheckEnemyBounds();
+    }
+
+    function gameLoop()
+    {
+      moveEnemy();
+
+      if (checkGameOver())
+      {
+        isDie=true;
+        return;
+      }
+
+      requestAnimationFrame(gameLoop);
+    }
+
+function setScore()
+{
+  $("#score").text(`Score : ${score}`);
+}
+    function respawnEnemy()
+    {
+      if(isSpawning)
+      {
+        return;
+      }
+
+      if(!isDie)
+      {
+        score +=100;
+        setScore(score);
+      }
+
+      isSpawning=true;
+      enemyspeed = Math.random()*15+5;
+
+      const spawnTime=Math.random()*1000+500;
+
+      setTimeout(()=>{$("#enermy").css("right","-=100px");isSpawning=false;},spawnTime);
+
+    }
+
+    function checkGameOver()
+    {
+      const player = document.getElementById("player");
+      const enemy = document.getElementById("enermy");
+
+      let isGameOver = false;
+
+      if (checkCollision(player, enermy))
+      {
+        console.log("Game Over");
+        isGameOver = true;
+      }
+
+      return isGameOver;
+    }
+
+    function CheckEnemyBounds()
+    {
+      const Player = $("#enermy");
+      const PlayerLeft = parseInt(Player.css("left"));//0px->0
+
+
+      if(PlayerLeft<-100)
+      {
+        respawnEnemy();
+      }
+      // else if(PlayerLeft+PlayerWidth>bgWidth)
+      // {
+      //   Player.css("left","450px");
+      // }
+      // else if(PlayerTop<0)
+      // {
+      //   Player.css("Top","0px");
+      // }
+      // else if(PlayerTop+PlayerHeight>bgHeight)
+      // {
+      //   Player.css("Top","450px");
+      // }
+    }
+
+    $(()=>
+      {
+        gameLoop();
+      })
+  </script>
+  <script>
+    const playerWidth = 50;
+    const playerHeight = 50;
+
+    function CheckGameOver()
+    {
+      const player =document.getElementById("player");
+      const enemy =document.getElementById("enermy");
+      // const playerX=parseInt($("#player").css("left"));
+      // const playerY=parseInt($("#player").css("bottom"));
+      let isGameOver = false;
+
+      if (checkCollision(player, enemy))
+      {
+        console.log("Game Over");
+        isGameOver = true;
+      }
+
+      return isGameOver;
+
+    }
+
+    function checkCollision(div1, div2) {
+      // div1과 div2의 위치와 크기를 구합니다.
+      const rect1 = div1.getBoundingClientRect();
+      const rect2 = div2.getBoundingClientRect();
+
+      // 충돌 체크 (겹침)
+      const isColliding = !(rect1.right < rect2.left ||   // div1의 오른쪽 끝이 div2의 왼쪽 끝보다 왼쪽에 있을 때
+              rect1.left > rect2.right ||   // div1의 왼쪽 끝이 div2의 오른쪽 끝보다 오른쪽에 있을 때
+              rect1.bottom < rect2.top ||   // div1의 아래쪽 끝이 div2의 위쪽 끝보다 위에 있을 때
+              rect1.top > rect2.bottom);    // div1의 위쪽 끝이 div2의 아래쪽 끝보다 아래에 있을 때
+
+      return isColliding;
+    }
+
+  </script>
+
+  <style>
+    #background
+    {
+      background-image: url("asset/thumb-1920-1069903.jpg");
+      background-size:cover;
+      position: absolute;
+      align-content: center;
+      width: 500px;
+      height: 500px;
+      border: 1px solid black;
+    }
+    #player
+    {
+      /*background-image: url("asset/chalice_idle_0001.png");*/
+      /*background-size:cover;*/
+      visibility:visible;
+      position: absolute;
+     bottom: 50px;
+      left: 30px;
+    }
+    #enermy
+    {
+      position: absolute;
+      bottom: 50px;
+      right: 10px;
+    }
+
+    #score
+    {
+      font-size: 50px;
+
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-$END$
+<div id="background">
+  <div id="player">
+    <img src="asset/chalice_idle_0001.png" width="144" height="158">
+  </div>
+  <div id="enermy">
+    <img src="asset/DaivCaInUPUD2lszgh-uR74isglbmVKAUWLztC4tmhd9FJPvleVqvF1-d9wwVjCLl7wq-8O9_gMQFfKcntuz8Q.webp" width="144" height="158">
+  </div>
+  <div id="score">
+    score : 0
+  </div>
+</div>
+
 </body>
 </html>
